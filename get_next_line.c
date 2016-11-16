@@ -1,37 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/16 10:04:33 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/16 13:30:35 by jcarra           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
 #include "get_next_line.h"
 
-int	ft_end(int ret, int size)
+int			ft_end(int ret, int size)
 {
-  if (ret == -1)
-    return (-1);
-  if (ret == 0 && size > 0)
-    return (1);
-  if (ret == 0 && size == 0)
-    return (0);
-  return (0);
+	if (ret == -1)
+		return (-1);
+	if (ret == 0 && size > 0)
+		return (1);
+	if (ret == 0 && size == 0)
+		return (0);
+	return (0);
 }
 
-int	get_next_line(int cont fd, char **line)
+char		*ft_strncpy(char *dest, const char *src, size_t n)
 {
-  int	ret;
-  int	size;
-  char	c;
+	size_t	i;
 
-  size = 0;
-  while (size < BUFFER_SIZE)
-    {
-      if ((ret = read(fd, &c, 1)) > 0)
+	i = 0;
+	while (src[i] && i < n)
 	{
-	  if (c == '\n')
-	    {
-	      *(line)[size] = '\0';
-	      return (1);
-	    }
-	  *(line)[size++] = c;
+		dest[i] = src[i];
+		i = i + 1;
 	}
-      else
-	return (ft_end(ret, size));
-      size = size + 1;
-    }
-  return (0);
+	while (i < n)
+		dest[i++] = '\0';
+	return (dest);
+}
+
+char		*ft_alloc(char **line, size_t len)
+{
+	char	*str;
+
+	if ((str = malloc(len + BUFFER_SIZE)) == NULL)
+		return (NULL);
+	if (len == 0)
+		return (str);
+	ft_strncpy(str, (*line), len);
+	free(*line);
+	return (str);
+}
+
+int			ft_get_next_line(int const fd, char **line, size_t size, size_t n)
+{
+	int		ret;
+	char	c;
+
+	while (42)
+	{
+		(*line) = ft_alloc(line, size);
+		while (size < BUFFER_SIZE * n)
+		{
+			ret = read(fd, &c, 1);
+			(*line)[size] = '\0';
+			if (ret > 0)
+			{
+				if (c == DEL)
+					return (1);
+				(*line)[size] = c;
+			}
+			else
+				return (ft_end(ret, size));
+			size = size + 1;
+		}
+		(*line)[size] = '\0';
+		n = n + 1;
+	}
+	return (0);
+}
+
+int			get_next_line(int const fd, char **line)
+{
+	if (!line)
+		return (-1);
+	return (ft_get_next_line(fd, &(*line), 0, -1));
 }
