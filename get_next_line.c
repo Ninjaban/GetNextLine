@@ -6,11 +6,10 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 10:04:33 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/16 13:30:35 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/17 09:01:23 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
 int			ft_end(int ret, int size)
