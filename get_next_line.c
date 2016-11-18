@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 10:04:33 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/17 09:01:23 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/18 18:40:01 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			ft_get_next_line(int const fd, char **line, size_t size, size_t n)
 		(*line) = ft_alloc(line, size);
 		while (size < BUFFER_SIZE * n)
 		{
-			ret = read(fd, &c, 1);
+			ret = read(fd, &c, BUFFER_SIZE - BUFFER_SIZE + 1);
 			(*line)[size] = '\0';
 			if (ret > 0)
 			{
