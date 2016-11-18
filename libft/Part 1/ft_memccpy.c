@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:04:07 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 15:53:19 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+void					*ft_memccpy(void *str, const void *srcs,
+									int c, size_t n)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	unsigned char		*dst;
+	const unsigned char	*src;
+	size_t				i;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	dst = str;
+	src = srcs;
+	i = 0;
+	if (srcs != NULL)
+		while (i++ < n && *src != (unsigned char)c)
+			*dst++ = *src++;
+	if (*src == (unsigned char)c)
+	{
+		*dst++ = *src++;
+		return ((void *)dst);
+	}
+	else
+		return (NULL);
+}

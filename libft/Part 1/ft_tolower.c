@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 16:56:44 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 09:57:00 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+int		ft_tolower(int c)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
-
-int			get_next_line(int const fd, char **line);
-
-#endif
+	if (c >= (int)'A' && c <= (int)'Z')
+		c = c - 'A' + 'a';
+	return (c);
+}

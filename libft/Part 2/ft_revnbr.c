@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_revnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 18:44:46 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 18:44:48 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+unsigned long int		ft_revnbr(unsigned long int nbr)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	unsigned long int	rev;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	rev = 1;
+	while (nbr > 0)
+	{
+		rev = rev * 10 + (nbr % 10);
+		nbr = nbr / 10;
+	}
+	return (rev);
+}

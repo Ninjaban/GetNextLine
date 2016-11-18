@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 15:47:46 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 16:35:59 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+void	ft_putstr_fd(char *str, int fd)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
-
-int			get_next_line(int const fd, char **line);
-
-#endif
+	if (str != NULL)
+		write(fd, str, ft_strlen(str));
+}

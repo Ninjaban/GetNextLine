@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:31:45 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 14:55:29 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+char		*ft_strmap(char const *s, char (*f)(char))
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	char	*str;
+	int		n;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = -1;
+	if (s == NULL)
+		return (NULL);
+	if ((str = malloc(ft_strlen((char *)s) + 1)) == NULL)
+		return (NULL);
+	while (s[++n])
+		str[n] = f(s[n]);
+	str[n] = '\0';
+	return (str);
+}

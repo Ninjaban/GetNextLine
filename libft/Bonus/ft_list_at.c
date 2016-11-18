@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_list_at.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 10:42:07 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:32:31 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+t_lst	*ft_list_at(t_lst *begin_list, unsigned int nbr)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	t_lst			*elem;
+	unsigned int	n;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = 0;
+	elem = begin_list;
+	while (n < nbr && elem->next != NULL)
+	{
+		elem = elem->next;
+		n = n + 1;
+	}
+	if (n < nbr)
+		return (NULL);
+	return (elem);
+}

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:58:09 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 14:58:10 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	char	*str;
+	size_t	n;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = 0;
+	if (s == NULL)
+		return (NULL);
+	if ((str = malloc(len + 1)) == NULL)
+		return (NULL);
+	while (n < len)
+	{
+		str[n] = s[start + n];
+		n = n + 1;
+	}
+	str[n] = '\0';
+	return (str);
+}

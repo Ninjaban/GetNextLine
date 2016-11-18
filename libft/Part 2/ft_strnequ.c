@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:43:42 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 14:59:54 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+int			ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	size_t	i;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
+		i = i + 1;
+	if (s1[i] != s2[i])
+		return (0);
+	return (1);
+}

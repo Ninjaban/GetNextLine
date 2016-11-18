@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 12:30:54 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 12:37:56 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+char		*ft_strncat(char *dest, const char *src, size_t n)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	int		len;
+	size_t	i;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	len = ft_strlen(dest);
+	while (src[i] && i < n)
+		dest[len++] = src[i++];
+	dest[len] = '\0';
+	return (dest);
+}

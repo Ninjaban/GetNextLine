@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:02:40 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 15:02:02 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+void					*ft_memchr(const void *str, int c, size_t n)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	const unsigned char	*dst;
+	size_t				i;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	dst = str;
+	i = 0;
+	while (i < n && (*dst != (unsigned char)c) && *dst != '\0')
+	{
+		i = i + 1;
+		dst++;
+	}
+	if (*dst == (unsigned char)c)
+		return ((void *)dst);
+	else
+		return (NULL);
+}

@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/16 12:17:03 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-typedef struct	s_buf
-{
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
 
 int			get_next_line(int const fd, char **line);
 

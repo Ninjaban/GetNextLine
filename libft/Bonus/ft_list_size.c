@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 10:05:55 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:31:55 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdlib.h>
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+int		ft_list_size(t_lst *begin_list)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	t_lst	*elem;
+	int		n;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = 1;
+	if (begin_list == NULL)
+		return (0);
+	elem = begin_list;
+	while (elem->next != NULL)
+	{
+		n = n + 1;
+		elem = elem->next;
+	}
+	return (n);
+}

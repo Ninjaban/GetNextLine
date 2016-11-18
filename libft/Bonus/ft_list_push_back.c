@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_list_push_back.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 09:39:23 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:31:39 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdlib.h>
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+void	ft_list_push_back(t_lst **begin_list, void *data)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	t_lst	*new_elem;
+	t_lst	*elem;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	new_elem = ft_create_elem(data);
+	elem = *begin_list;
+	if (elem == NULL)
+		*begin_list = new_elem;
+	else
+	{
+		while (elem->next != NULL)
+			elem = elem->next;
+		elem->next = new_elem;
+	}
+}

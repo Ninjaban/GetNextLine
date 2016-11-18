@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/02 16:52:51 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 15:52:07 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	int	n;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = 0;
+	while (s1[n] == s2[n] && s1[n] && s2[n])
+		n = n + 1;
+	return ((unsigned char)s1[n] - (unsigned char)s2[n]);
+}

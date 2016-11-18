@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 11:17:22 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:32:38 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+void	ft_list_reverse(t_lst **begin_list)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	t_lst	*last;
+	t_lst	*next;
+	t_lst	*tmp;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	if (begin_list && *begin_list)
+	{
+		last = *begin_list;
+		if (last->next != NULL)
+		{
+			next = last->next;
+			last->next = NULL;
+			while (next->next != NULL)
+			{
+				tmp = next->next;
+				next->next = last;
+				last = next;
+				next = tmp;
+			}
+		}
+	}
+}

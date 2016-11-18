@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 13:18:26 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/04 15:44:28 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+int					ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n && str1[i] == str2[i])
+		i = i + 1;
+	if (i == n)
+		return (str1[i - 1] - str2[i - 1]);
+	return (str1[i] - str2[i]);
+}

@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_list_push_params.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 10:04:41 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/18 19:10:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 10:14:23 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:32:14 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFFER_SIZE 4096
-# define DEL '\n'
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct	s_buf
+t_lst	*ft_list_push_params(int ac, char **av)
 {
-	int			fd;
-	char		*file;
-	size_t		n;
-}				t_buf;
+	int		n;
+	t_lst	*new;
 
-int			get_next_line(int const fd, char **line);
-
-#endif
+	n = 1;
+	new = NULL;
+	if (ac > 1)
+		new = ft_create_elem(av[n++]);
+	while (n < ac)
+	{
+		new->next = ft_create_elem(av[n++]);
+		new = new->next;
+	}
+	if (new != NULL)
+		new->next = ft_create_elem(av[0]);
+	else
+		new = ft_create_elem(av[0]);
+	return (new);
+}
