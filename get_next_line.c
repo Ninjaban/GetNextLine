@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 19:11:06 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/19 11:43:46 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/28 14:22:44 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ static int			ft_read(t_buf ***buf, int fd, char **line)
 	n = 0;
 	while ((*buf)[n])
 		n = n + 1;
-	if ((tmp = malloc(BUFFER_SIZE + 1)) == NULL)
+	if ((tmp = malloc(BUFF_SIZE + 1)) == NULL)
 		return (-1);
 	if (((*buf)[n] = malloc(sizeof(t_buf))) == NULL)
 		return (-1);
 	(*buf)[n]->fd = fd;
 	(*buf)[n]->n = 0;
 	(*buf)[n]->file = ft_strdup("");
-	while ((ret = read(fd, tmp, BUFFER_SIZE)) == BUFFER_SIZE)
+	while ((ret = read(fd, tmp, BUFF_SIZE)) == BUFF_SIZE)
 		ft_complete_file(&((*buf)[n]->file), tmp, ret);
 	if (ret == -1)
 		return (-1);
