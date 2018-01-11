@@ -37,7 +37,7 @@ int		get_next_line(const int fd, char **line)
 	static char	*buf = NULL;
 	char		*strchr_ret;
 
-	if (!line || fd < 0)
+	if (!line || fd < 0 || BUFF_SIZE <= 0)
 		return (-1);
 	if (!buf && ft_read(fd, &buf) == -1)
 		return (-1);
