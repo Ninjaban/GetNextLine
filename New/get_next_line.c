@@ -7,28 +7,28 @@
 #include "get_next_line.h"
 #include "libft.h"
 
+void	ft_read_stock(char **buf, char read_buf[BUFF_SIZE + 1], int read_ret)
+{
+	char		*buf_tmp;
+
+	read_buf[read_ret] = '\0';
+	buf_tmp = (!(*buf)) ? ft_strdup(read_buf) : ft_strjoin(*buf, read_buf);
+	free(*buf);
+	*buf = buf_tmp;
+
+}
+
 int		ft_read(const int fd, char **buf)
 {
 	char		read_buf[BUFF_SIZE + 1];
-	char		*buf_tmp;
 	int			read_ret;
 
 	while ((read_ret = (int)read(fd, read_buf, BUFF_SIZE)) > 0)
-	{
-		read_buf[read_ret] = '\0';
-		buf_tmp = (!(*buf)) ? ft_strdup(read_buf) : ft_strjoin(*buf, read_buf);
-		free(*buf);
-		*buf = buf_tmp;
-	}
+		ft_read_stock(buf, read_buf, read_ret);
 	if (read_ret == -1)
 		return (-1);
 	if (read_ret)
-	{
-		read_buf[read_ret] = '\0';
-		buf_tmp = (!(*buf)) ? ft_strdup(read_buf) : ft_strjoin(*buf, read_buf);
-		free(*buf);
-		*buf = buf_tmp;
-	}
+		ft_read_stock(buf, read_buf, read_ret);
 	return (0);
 }
 
